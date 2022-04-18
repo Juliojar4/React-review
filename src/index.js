@@ -6,6 +6,7 @@ import './index.scss';
 
 import Navigation from './components/Navigation';
 import ThemeContext from './utility/context/ThemeContext';
+import Message from './components/Message/message';
 import App from './App';
 
 ReactDOM.render(
@@ -13,6 +14,7 @@ ReactDOM.render(
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <ThemeContext>
                 <Navigation />
+                <Message/>
                 <App />
             </ThemeContext>
         </BrowserRouter>

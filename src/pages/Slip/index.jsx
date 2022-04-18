@@ -37,7 +37,7 @@ const Slip = (props) => {
             {phrase && (
                 <>
                     <p className="text-white font-bold text-center text-4xl">
-                        "{phrase}" 🤙
+                        "{phrase}" 🤙 
                     </p>
                     <div className="flex justify-center gap-2 mt-10">
                         <Button buttonCustomEvent={decrementId}>Prev</Button>

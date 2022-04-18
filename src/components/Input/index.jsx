@@ -16,6 +16,7 @@ const Input = ({
                 placeholder={placeholder}
                 maxLength={maxLength}
                 minLength={minLength}
+                inputCustomEvent={inputCustomEvent}
             />
         </div>
     );

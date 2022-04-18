@@ -20,6 +20,42 @@ const Navigation = (props) => {
                 <ul>
                     <li>
                         <Link
+                            to="/"
+                            className="text-white font-bold text-center text-xl"
+                            onClick={() => setIsActive(false)}
+                        >
+                            Home
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/register"
+                            className="text-white font-bold text-center text-xl"
+                            onClick={() => setIsActive(false)}
+                        >
+                            Register
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/login"
+                            className="text-white font-bold text-center text-xl"
+                            onClick={() => setIsActive(false)}
+                        >
+                            Login
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/editUser"
+                            className="text-white font-bold text-center text-xl"
+                            onClick={() => setIsActive(false)}
+                        >
+                            Edit User
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
                             to="/slip"
                             className="text-white font-bold text-center text-xl"
                             onClick={() => setIsActive(false)}
@@ -34,6 +70,15 @@ const Navigation = (props) => {
                             onClick={() => setIsActive(false)}
                         >
                             Currency Cotation
+                        </Link>
+                    </li>
+                    <li>
+                        <Link
+                            to="/currencyPeriod"
+                            className="text-white font-bold text-center text-xl"
+                            onClick={() => setIsActive(false)}
+                        >
+                            Currency Period
                         </Link>
                     </li>
                 </ul>

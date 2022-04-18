@@ -1,0 +1,28 @@
+@import '../../styles/scss/variables.scss';
+
+.content {
+    display: flex;
+    justify-content:center;
+     
+    .test-form {
+        display: flex;
+        flex-direction: column;
+        .information-input {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            width:500px;
+            padding: 10px;
+            border-radius:30px;
+            text-align: center
+        }
+        .input-infotmation-submit{
+            align-self:center;
+            width: 250px;
+            padding: 5px;
+            border-radius:5px;
+            background-color: $color-flickr-pink;
+            color:aliceblue;
+            margin-top: 20px;
+        }       
+    }
+}
