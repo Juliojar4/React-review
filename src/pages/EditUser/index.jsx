@@ -61,12 +61,14 @@ const Register = (props) => {
     return (
 
         <div className="container">   
+            <h1>EditUser</h1>
             <div className="content">
                 <form className="test-form" onSubmit={handleSubmit}>
                     <input type="text" name="name" id="name" onChange={handleValue} className="information-input" placeholder='Name'/>   
                     <input type="text" name="email" id="email" onChange={handleValue} className="information-input" placeholder='E-mail' /> 
                     <input type="text" name="cpf" id="cpf" onChange={handleValue} className="information-input" placeholder='CPF' />
                     <input type="text" name="password" id="password" onChange={handleValue} className="information-input" placeholder='Password' />
+                    <input type="text" name="confirmPassword" id="confirmPassword" onChange={handleValue} className="information-input" placeholder='Confirm Password'/>
                     <input type="submit" value="Enviar" className='input-infotmation-submit' />
                 </form>
             </div>

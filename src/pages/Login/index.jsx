@@ -1,9 +1,18 @@
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import './styles.scss';
- 
+import useFlashMessage from '../../hooks/useFlashMessage'; 
 
 const Login = (props) => {
+    const { setFlashMessage } = useFlashMessage()
+    const [authenticated, setAuthenticated] = useState(false)
+
+    async function authUser(response) {
+        setAuthenticated(true)
+        localStorage.setItem('token', JSON.stringify(response.data.token))
+    }
+
+    const [err,setErr] = useState('')
     const [mess, setMess] = useState('',true)
     const [form, setForm] = useState({
         email: '',
@@ -31,15 +40,17 @@ const Login = (props) => {
                 .then((response) => {
                     setMess('Voce esta altenticado')
                     console.log(response);
+                    authUser(response)
                 })
                 .catch((error) => {
-                    console.log(error)
-                    setMess('',false)
+                    setErr(error.response.data.message) 
                 })  
+        setFlashMessage(err)
     };     
     return (
 
         <div className="container">   
+            <h1>Login</h1>
             <div className="content">
                 <form className="test-form" onSubmit={handleSubmit}>
                     <input type="text" name="email" id="email" onChange={handleValue} className="information-input" placeholder='E-mail'/>   
