@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Dropdown from '../../components/Dropdown';
 import Option from '../../components/Dropdown/option';
-import getCurrency from '../../services/currencies';
+import getCurrency from '../../services/currencies/currencies';
 
 const Currencies = (props) => {
     const [currency, setCurrency] = useState({});

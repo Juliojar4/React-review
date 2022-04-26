@@ -3,16 +3,12 @@ import axios from 'axios';
 import {useState} from 'react';
 import './styles.scss';
 
-const Login = (props) => {
-   
-    async function authUser(response) {
-        localStorage.setItem('token', JSON.stringify(response.data.token))
-    }
-     
-    const [err,setErr] = useState(false)
+const SendEmail = () => {
+
+    const [err, setErr] = useState('')
+    const [send, setSend] = useState(false)
     const [form, setForm] = useState({
         email: '',
-        password: ''
     });
        
     const handleValue = (e) => {
@@ -22,31 +18,34 @@ const Login = (props) => {
         });
     };
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         axios({
             method: 'post',
-            url: 'http://localhost:3001/user/login',
+            url: 'http://localhost:3001/user/send',
             data: form
-            })
+        })
                 .then((response) => {
-                    authUser(response)
+                    setSend(true)
+                    console.log(response);
                 })
                 .catch((error) => {
-                    setErr(error.response.data.message) 
+                    setErr(error.response.data.message)
                 })  
     };     
     return (
-        <div className="container"> 
+        <div className="container">
             {err &&
                 <h1 className='mensage-error'>{err}</h1>
-            }    
-            <h1 className='title-form'>Login</h1>
+            }   
+            {send &&
+                <h1>Deu tudo certo</h1>
+            }
+            <h1 className='title-form'>forgot my password</h1>
             <div className="content">
                 <form className="test-form" onSubmit={handleSubmit}>
                     <input type="text" name="email" id="email" onChange={handleValue} className="information-input" placeholder='E-mail'/>   
-                    <input type="password" name="password" id="password" onChange={handleValue} className="information-input" placeholder='Password' />
-                    <a href="forgotPassword"><p>Forgot my password</p></a>
-                    <input type="submit" value="Enviar" className='input-infotmation-submit'/>
+                    <input type="submit" value="Enviar" className='input-infotmation-submit' />
                 </form>
             </div>
         </div>       
@@ -54,4 +53,4 @@ const Login = (props) => {
 };
 
  
-export default Login 
+export default SendEmail 

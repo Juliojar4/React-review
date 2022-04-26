@@ -1,19 +1,14 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import './styles.scss';
-import useFlashMessage from '../../hooks/useFlashMessage'; 
 
 const Register = (props) => {
-    const { setFlashMessage } = useFlashMessage()
-    const [authenticated, setAuthenticated] = useState(false)
 
-        useEffect(() => {
+    useEffect(() => {
         const token = localStorage.getItem('token')
 
         if (token) {
-            console.log(token)
             axios.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`
-            setAuthenticated(true)
         }
     }, [])
     
@@ -54,14 +49,16 @@ const Register = (props) => {
             .catch((error) => {
                 setErr(error.response.data.message)        
             });
-        setFlashMessage(err)
     };
  
       
     return (
 
         <div className="container">   
-            <h1>EditUser</h1>
+            {err &&
+                <h1 className='mensage-error'>{err}</h1>
+            }   
+            <h1 className='title-form'>EditUser</h1>
             <div className="content">
                 <form className="test-form" onSubmit={handleSubmit}>
                     <input type="text" name="name" id="name" onChange={handleValue} className="information-input" placeholder='Name'/>   

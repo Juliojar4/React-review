@@ -5,7 +5,7 @@ const getCurrency = (code, codeIn) => {
         axios
             .get(`https://economia.awesomeapi.com.br/last/${code}-${codeIn}`)
             .then((res) => {
-                res && resolve(res.data[code]);
+                res && resolve(res.data[code + codeIn]);
             })
             .catch((err) => reject(err));
     });

@@ -11,13 +11,13 @@ import App from './App';
 
 ReactDOM.render(
     <React.StrictMode>
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
-            <ThemeContext>
-                <Navigation />
-                <Message/>
-                <App />
-            </ThemeContext>
-        </BrowserRouter>
+            <BrowserRouter basename={process.env.PUBLIC_URL}>
+                <ThemeContext>  
+                    <Navigation />
+                    <Message/>
+                    <App />
+                </ThemeContext>
+            </BrowserRouter>
     </React.StrictMode>,
     document.getElementById('root')
 );

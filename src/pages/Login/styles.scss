@@ -1,5 +1,14 @@
 @import '../../styles/scss/variables.scss';
 
+.mensage-error{
+    background-color: #A52A2A;
+    padding: 12px;
+    margin-bottom: 30px;
+    width:500px;
+    margin-left:510px;
+    border-radius: 10px;
+}
+
 .content {
     display: flex;
     justify-content:center;

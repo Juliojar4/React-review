@@ -1,16 +1,10 @@
 import axios from 'axios';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import './style.scss';
-import useFlashMessage from '../../hooks/useFlashMessage'; 
 
 const Register = (props) => {
-    const { setFlashMessage } = useFlashMessage()
-    const [authenticated, setAuthenticated] = useState(false)
- 
-  
     
     async function authUser(response) {
-        setAuthenticated(true)
         localStorage.setItem('token', JSON.stringify(response.data.token))
     }
 
@@ -50,20 +44,23 @@ const Register = (props) => {
             .catch((error) => {
                 setErr(error.response.data.message)        
             });
-        setFlashMessage(err)
+            
     };
  
       
     return (
-        <div className="container">   
-            <h1>Register</h1>
+        <div className="container">  
+            {err &&
+                <h1 className='mensage-error'>{err}</h1>
+            }        
+            <h1 className='title-form'>Register</h1>
             <div className="content">
                 <form className="test-form" onSubmit={handleSubmit}>
                     <input type="text" name="name" id="name" onChange={handleValue} className="information-input" placeholder='Name'/>   
                     <input type="text" name="email" id="email" onChange={handleValue} className="information-input" placeholder='E-mail' /> 
                     <input type="text" name="cpf" id="cpf" onChange={handleValue} className="information-input" placeholder='CPF' />
                     <input type="password" name="password" id="password" onChange={handleValue} className="information-input" placeholder='Password' />
-                     <input type="password" name="confirmPassword" id="confirmPassword" onChange={handleValue} className="information-input" placeholder='confirmPassword' />
+                    <input type="password" name="confirmPassword" id="confirmPassword" onChange={handleValue} className="information-input" placeholder='confirmPassword' />
                     <input type="submit" value="Enviar" className='input-infotmation-submit' />
                 </form>
             </div>

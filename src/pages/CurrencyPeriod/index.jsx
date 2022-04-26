@@ -1,11 +1,12 @@
+/* eslint-disable array-callback-return */
 /* eslint-disable no-negated-in-lhs */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react';
 import Dropdown from '../../components/Dropdown';
 import Option from '../../components/Dropdown/option';
-import currencyPeriod from '../../services/currencyPeriod'
+import currencyPeriod from '../../services/currencies/currencyPeriod'
 import './style.scss';
-import Grafico from '../../services/graphic'
+import Grafico from '../../services/graphic/graphic'
 
 
 const Currencies = (props) => {
@@ -20,11 +21,12 @@ const Currencies = (props) => {
     useEffect(() => {
         currencyPeriod(compositeCurrency, input)
             .then((res) => {
+                console.log(res);
                 setCurrency(res);             
             })
             .catch((err) => console.log(err));      
     }, [primarySelect, secundarySelect, input]); 
-    const array = [['Teste','Down','High', ]]
+    const array = [['Teste','Down','High']]
  
     currency.map((altas,index) => {
         array.push([index  + 1 ,Number(altas.low),Number(altas.high)])

@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './style.scss';
+import logout from '../../services/logout'
 
 const handleWidthScreen = () => (window.innerWidth <= 768 ? true : false);
 
 const Navigation = (props) => {
+    function refreshPage(logout) { 
+        logout()
+        window.location.reload(); 
+    }
     const [isMobile, setIsMobile] = useState(handleWidthScreen());
     const [isActive, setIsActive] = useState(false);
-
+    const token = localStorage.getItem('token')
     useEffect(() => {
         handleWidthScreen();
         window.addEventListener('resize', () => setIsMobile(handleWidthScreen));
     }, [isActive]);
-
-    console.log(isActive);
+    
     const WrapNavigation = () => {
         return (
             <nav className="navigation">
@@ -27,15 +31,17 @@ const Navigation = (props) => {
                             Home
                         </Link>
                     </li>
-                    <li>
-                        <Link
-                            to="/register"
-                            className="text-white font-bold text-center text-xl"
-                            onClick={() => setIsActive(false)}
-                        >
-                            Register
-                        </Link>
-                    </li>
+                    {!token &&
+                        <li>
+                            <Link
+                                to="/register"
+                                className="text-white font-bold text-center text-xl"
+                                onClick={() => setIsActive(false)}
+                            >
+                                Register
+                            </Link>
+                        </li>
+                    }
                     <li>
                         <Link
                             to="/login"
@@ -45,42 +51,61 @@ const Navigation = (props) => {
                             Login
                         </Link>
                     </li>
-                    <li>
-                        <Link
-                            to="/editUser"
-                            className="text-white font-bold text-center text-xl"
-                            onClick={() => setIsActive(false)}
-                        >
-                            Edit User
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/slip"
-                            className="text-white font-bold text-center text-xl"
-                            onClick={() => setIsActive(false)}
-                        >
-                            Slip
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/currencies"
-                            className="text-white font-bold text-center text-xl"
-                            onClick={() => setIsActive(false)}
-                        >
-                            Currency Cotation
-                        </Link>
-                    </li>
-                    <li>
-                        <Link
-                            to="/currencyPeriod"
-                            className="text-white font-bold text-center text-xl"
-                            onClick={() => setIsActive(false)}
-                        >
-                            Currency Period
-                        </Link>
-                    </li>
+                    {token &&
+                        <li>
+                            <Link
+                                to="/editUser"
+                                className="text-white font-bold text-center text-xl"
+                                onClick={() => setIsActive(false)}
+                            >
+                                Edit User
+                            </Link>
+                        </li>
+                    }
+                    {token &&
+                        <li>
+                            <Link
+                                to="/slip"
+                                className="text-white font-bold text-center text-xl"
+                                onClick={() => setIsActive(false)}
+                            >
+                                Slip
+                            </Link>
+                        </li>
+                    }
+                    {token &&
+                        <li>
+                            <Link
+                                to="/currencies"
+                                className="text-white font-bold text-center text-xl"
+                                onClick={() => setIsActive(false)}
+                            >
+                                Currency Cotation
+                            </Link>
+                        </li>
+                    }
+                    {token &&
+                        <li>
+                            <Link
+                                to="/currencyPeriod"
+                                className="text-white font-bold text-center text-xl"
+                                onClick={() => setIsActive(false)}
+                            >
+                                Currency Period
+                            </Link>
+                        </li>
+                    }
+                    {token &&
+                            <li>
+                                <Link  
+                                    onClick={() => refreshPage(logout)}
+                                    to="/"
+                                    className="text-white font-bold text-center text-xl"                                  
+                                >
+                                    logout
+                                </Link>
+                            </li>
+                    }
                 </ul>
             </nav>
         );
